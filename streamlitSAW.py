@@ -85,9 +85,15 @@ if st.button("Buat Alternatif Terbaik"):
         with tab5:
             hasil_ranking=df_preference_value.sort_values(by='preference_value',ascending=False)
             best_alt = hasil_ranking.index[0]
+            st.write(best_alt)
             st.text(f"Motor Bekas Terbaik Adalah {best_alt}")
-            best_alt_data = data.loc[best_alt]
+            
+            df2=pd.read_csv('bike_dataset.csv')
+            df2=df2.set_index('model_name')
+            best_alt_data = df2.loc[best_alt]
             st.dataframe(best_alt_data)
     else:
         st.error("Total bobot harus 1")
+
+
     
