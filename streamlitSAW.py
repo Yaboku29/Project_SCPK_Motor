@@ -44,12 +44,12 @@ if page == "Semua Data":
             st.write("Total Bobot:", round(total, 2))
 
         with col2:
-            at_price = st.selectbox("Atributte ",["Cost", "Benefit"], key="atPrice")
-            at_cc = st.selectbox("",["Cost", "Benefit"], key="atCC")
-            at_milage = st.selectbox("",["Cost", "Benefit"], key="atMilage")
-            at_weight = st.selectbox("",["Cost", "Benefit"], key="atWeight")
-            at_acs = st.selectbox("",["Cost", "Benefit"], key="atAcs")
-            at_tps = st.selectbox("",["Cost", "Benefit"], key="atTps")
+            at_price = st.selectbox("Atributte ",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atPrice" )
+            at_cc = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atCC")
+            at_milage = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atMilage")
+            at_weight = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atWeight")
+            at_acs = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atAcs")
+            at_tps = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atTps")
 
             atribut = {
                 "price": at_price,
@@ -141,12 +141,12 @@ elif page == "Data Pilihan":
             st.write("Total Bobot:", round(total, 2))
 
         with col2:
-            at_price = st.selectbox("Atributte ",["Cost", "Benefit"], key="atPrice")
-            at_cc = st.selectbox("",["Cost", "Benefit"], key="atCC")
-            at_milage = st.selectbox("",["Cost", "Benefit"], key="atMilage")
-            at_weight = st.selectbox("",["Cost", "Benefit"], key="atWeight")
-            at_acs = st.selectbox("",["Cost", "Benefit"], key="atAcs")
-            at_tps = st.selectbox("",["Cost", "Benefit"], key="atTps")
+            at_price = st.selectbox("Atributte ",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atPrice")
+            at_cc = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atCC")
+            at_milage = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atMilage")
+            at_weight = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atWeight")
+            at_acs = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atAcs")
+            at_tps = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atTps")
 
             atribut = {
                 "price": at_price,
