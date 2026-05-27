@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import seaborn as sns
 
 
 st.set_page_config(page_title="SCPK")
@@ -137,6 +136,17 @@ if page == "Semua Data":
                 ax.set_ylabel("Nilai Normalisasi")
                 ax.legend()
                 st.pyplot(fig)
+
+                st.subheader("Data Lengkap Top 3")
+                top3_index = hasil_ranking.head(3).index
+                top3_data = df2.loc[top3_index].copy()
+                top3_data['preference_value'] = (
+                    hasil_ranking.head(3)['preference_value']
+                )  
+                top3_data = top3_data.reset_index()
+                top3_data.index = top3_data.index + 1
+                top3_data.index.name = "Ranking"
+                st.dataframe(top3_data)
 
             with tab7:
                 #grafik ketiga
