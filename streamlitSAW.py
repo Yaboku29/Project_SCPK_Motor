@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
+
 
 st.set_page_config(page_title="SCPK")
 st.title("Pemilihan Motor Bekas")
@@ -61,8 +63,12 @@ if page == "Semua Data":
             }
 
     if st.button("Buat Alternatif Terbaik"):
-        if total == 1:
-            tab3,tab4,tab5 = st.tabs(["Matriks Ternormalisasi","Nilai Preferensi","Alternatif Terbaik"])
+        if abs(total - 1) > 0.001:
+            st.error("Total bobot harus 1")
+        elif None in atribut.values():
+            st.error("Semua Atribut harus dipilih")
+        else:
+            tab3,tab4,tab5,tab6,tab7 = st.tabs(["Matriks Ternormalisasi","Nilai Preferensi","Alternatif Terbaik","Top 3","Top 10"])
             with tab3:
                 normalize_matrix=data.copy()
                 # print(normalize_matrix)
@@ -92,8 +98,74 @@ if page == "Semua Data":
                 df2=df2.set_index('model_name')
                 best_alt_data = df2.loc[best_alt]
                 st.dataframe(best_alt_data)
-        else:
-            st.error("Total bobot harus 1")
+
+                link_motor = best_alt_data['links']
+                st.link_button(
+                    "Lihat Detail Motor",
+                    link_motor
+                )
+            with tab6:
+                labels = [
+                    f"{k} ({atribut[k]})"
+                    for k in bobot.keys()
+                ]
+                fig, ax = plt.subplots()
+                ax.pie(
+                    bobot.values(),
+                    labels=labels,
+                    autopct='%1.1f%%'
+                )
+                ax.set_title("Bobot dan Atribut Kriteria")
+                st.pyplot(fig)
+
+                #grafik kedua
+                top3 = hasil_ranking.head(3).index
+                compare_data = normalize_matrix.loc[top3]
+                fig, ax = plt.subplots(figsize=(12,6))
+                x = np.arange(len(compare_data.columns))
+                width = 0.25
+                for i, motor in enumerate(compare_data.index):
+                    ax.bar(
+                        x + i*width,
+                        compare_data.loc[motor],
+                        width,
+                        label=motor
+                    )
+                ax.set_xticks(x + width)
+                ax.set_xticklabels(compare_data.columns)
+                ax.set_title("Perbandingan Top 3 Motor")
+                ax.set_ylabel("Nilai Normalisasi")
+                ax.legend()
+                st.pyplot(fig)
+
+            with tab7:
+                #grafik ketiga
+                top10 = hasil_ranking.head(10)
+                fig, ax = plt.subplots(figsize=(12,6))
+
+                ax.bar(
+                    top10.index,
+                    top10['preference_value']
+                )
+
+                ax.set_title("Top 10 Motor Berdasarkan Nilai SAW")
+                ax.set_ylabel("Nilai Preferensi")
+
+                plt.xticks(rotation=20)
+
+                st.pyplot(fig)
+
+                st.subheader("Data Lengkap Top 10")
+                top10_index = hasil_ranking.head(10).index
+                top10_data = df2.loc[top10_index].copy()
+                top10_data['preference_value'] = (
+                    hasil_ranking.head(10)['preference_value']
+                )  
+                top10_data = top10_data.reset_index()
+                top10_data.index = top10_data.index + 1
+                top10_data.index.name = "Ranking"
+                st.dataframe(top10_data)
+            
 elif page == "Data Pilihan":
     tab1,tab2,tab3=st.tabs([
         "Semua Data",
@@ -156,9 +228,18 @@ elif page == "Data Pilihan":
                 "acceleration_speed": at_acs,
                 "top_speed": at_tps
             }
+
     if st.button("Buat Alternatif Terbaik"):
-        if total == 1:
-            tab4,tab5,tab6 = st.tabs(["Matriks Ternormalisasi","Nilai Preferensi","Alternatif Terbaik"])
+        if abs(total - 1) > 0.001:
+            st.error("Total bobot harus 1")
+        elif None in atribut.values():
+            st.error("Semua Atribut harus dipilih")
+        elif len(pilihan) == 0:
+            st.error(f"Pilih tepat {jumlah} motor")
+        elif len(pilihan) != jumlah:
+            st.error(f"Pilih tepat {jumlah} motor")
+        else:
+            tab4,tab5,tab6,tab7 = st.tabs(["Matriks Ternormalisasi","Nilai Preferensi","Alternatif Terbaik","Grafik Perbandingan"])
             with tab4:
                 normalize_matrix=selected_data.copy()
                 # print(normalize_matrix)
@@ -188,5 +269,65 @@ elif page == "Data Pilihan":
                 df2=df2.set_index('model_name')
                 best_alt_data = df2.loc[best_alt]
                 st.dataframe(best_alt_data)
-        else:
-            st.error("Total bobot harus 1")
+
+                link_motor = best_alt_data['links']
+                st.link_button(
+                    "Lihat Detail Motor",
+                    link_motor
+                )
+            with tab7:
+                #Grafik Distribusi Kriteria
+                labels = [
+                    f"{k} ({atribut[k]})"
+                    for k in bobot.keys()
+                ]
+                fig, ax = plt.subplots()
+                ax.pie(
+                    bobot.values(),
+                    labels=labels,
+                    autopct='%1.1f%%'
+                )
+                ax.set_title("Bobot dan Atribut Kriteria")
+                st.pyplot(fig)
+
+                #Grafik Perbandingan Kriteria
+                compare_data = normalize_matrix.loc[pilihan]
+                fig, ax = plt.subplots(figsize=(12,6))
+                x = np.arange(len(compare_data.columns))
+                width = 0.8 / jumlah
+                for i, motor in enumerate(compare_data.index):
+                    ax.bar(
+                        x + i*width,
+                        compare_data.loc[motor],
+                        width,
+                        label=motor
+                    )
+                ax.set_xticks(x + width)
+                ax.set_xticklabels(compare_data.columns)
+                ax.set_title(f"Perbandingan {jumlah} Motor")
+                ax.set_ylabel("Nilai Normalisasi")
+                ax.legend(bbox_to_anchor=(1.02, 1),loc='upper left')
+                st.pyplot(fig)
+                
+                #Grafik Nilai Preferensi
+                fig, ax = plt.subplots(figsize=(12,6))
+                ax.bar(
+                    hasil_ranking.index,
+                    hasil_ranking['preference_value']
+                )
+                ax.set_title(f"Top {jumlah} Motor Berdasarkan Nilai SAW")
+                ax.set_ylabel("Nilai Preferensi")
+                plt.xticks(rotation=20)
+                st.pyplot(fig)
+
+                # Tabel
+                st.subheader(f"Data Lengkap {jumlah} Motor")
+                pilihan_index = hasil_ranking.index
+                pilihan_data = df2.loc[pilihan_index].copy()
+                pilihan_data['preference_value'] = (
+                    hasil_ranking.head(10)['preference_value']
+                ) 
+                pilihan_data = pilihan_data.reset_index()
+                pilihan_data.index = pilihan_data.index + 1
+                pilihan_data.index.name = "Ranking"
+                st.dataframe(pilihan_data)

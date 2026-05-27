@@ -264,12 +264,12 @@ BMW R nineT Scrambler,1675000,1197.0,20.0,Petrol Bike,220,https://www.carandbike
 BMW R 1200 GS Adventure,1725000,1170.0,20.0,Petrol Bike,263,https://www.carandbike.com/bmw-bikes/r-1200-gs-adventure,7.47,237.0
 BMW R 1200 RT,1835000,1170.0,20.0,Petrol Bike,276,https://www.carandbike.com/bmw-bikes/r-1200-rt,4.64,217.0
 Yamaha YZF R1,2039233,998.0,20.0,Petrol Bike,200,https://www.carandbike.com/yamaha-bikes/yzf-r1,4.19,225.0
-Indian Chief Dark Horse,2075922,1890.0,20.0,Petrol Bike,304,https://www.carandbike.com/indian-bikes/chief-dark-horse,5.76,224.0
+Indian Chief Dark Horse,2075922,1890.0,20.0,Petrol Bike,304,https://www.carandbike.com/indian-bikes/chief-dark-horse,5.76,185.0
 Indian Chief Classic,2129500,1811.0,20.0,Petrol Bike,357,https://www.carandbike.com/indian-bikes/chief-classic,3.35,234.0
 BMW S 1000 XR,2130000,999.0,20.0,Petrol Bike,216,https://www.carandbike.com/bmw-bikes/s-1000-xr,7.31,217.0
 Indian Chief Bobber Dark Horse,2139925,1890.0,20.0,Petrol Bike,315,https://www.carandbike.com/indian-bikes/chief-bobber-dark-horse,2.95,122.0
-Indian Chief Vintage,2532500,1811.0,20.0,Petrol Bike,379,https://www.carandbike.com/indian-bikes/chief-vintage,8.42,204.0
-Indian Chieftain,3201000,1811.0,20.0,Petrol Bike,389,https://www.carandbike.com/indian-bikes/chieftain,7.13,208.0
+Indian Chief Vintage,2532500,1811.0,20.0,Petrol Bike,379,https://www.carandbike.com/indian-bikes/chief-vintage,8.42,180.0
+Indian Chieftain,3201000,1811.0,20.0,Petrol Bike,389,https://www.carandbike.com/indian-bikes/chieftain,7.13,190.0
 Ducati Scrambler 1100,1099000,1079.0,19.2,Petrol Bike,189,https://www.carandbike.com/ducati-bikes/scrambler-1100,3.69,111.0
 Ducati Multistrada 1260,1599000,1262.0,19.2,Petrol Bike,232,https://www.carandbike.com/ducati-bikes/multistrada-1260,2.53,127.0
 Triumph Street Triple,915000,765.0,19.1,Petrol Bike,166,https://www.carandbike.com/triumph-bikes/street-triple,7.39,198.0
@@ -313,7 +313,7 @@ BMW M 1000 RR,4200000,999.0,15.4,Petrol Bike,192,https://www.carandbike.com/bmw-
 Kawasaki Z900,850000,948.0,15.0,Petrol Bike,208,https://www.carandbike.com/kawasaki-bikes/z900,3.47,203.0
 Harley-Davidson Street Bob,1259000,1745.0,15.0,Petrol Bike,286,https://www.carandbike.com/harley-davidson-bikes/street-bob,8.08,121.0
 Harley-Davidson Softail Low Rider,1375000,1745.0,15.0,Petrol Bike,300,https://www.carandbike.com/harley-davidson-bikes/softail-low-rider,7.35,175.0
-Harley-Davidson Fat Bob,1459000,1745.0,15.0,Petrol Bike,296,https://www.carandbike.com/harley-davidson-bikes/fat-bob,6.3,240.0
+Harley-Davidson Fat Bob,1459000,1745.0,15.0,Petrol Bike,296,https://www.carandbike.com/harley-davidson-bikes/fat-bob,6.3,182.0
 Kawasaki Z1000,1510000,1043.0,15.0,Petrol Bike,221,https://www.carandbike.com/kawasaki-bikes/z1000,7.73,216.0
 Kawasaki Ninja ZX-10R,1537000,998.0,15.0,Petrol Bike,206,https://www.carandbike.com/kawasaki-bikes/ninja-zx-10r,7.32,219.0
 Kawasaki Z1000R,1610000,1043.0,15.0,Petrol Bike,221,https://www.carandbike.com/kawasaki-bikes/z1000r,3.62,106.0
@@ -324,21 +324,21 @@ Harley-Davidson Softail Deluxe,1865000,1745.0,15.0,Petrol Bike,316,https://www.c
 Harley-Davidson Heritage Softail Classic,1971000,1745.0,15.0,Petrol Bike,316,https://www.carandbike.com/harley-davidson-bikes/heritage-softail-classic,4.41,115.0
 Ducati Monster 1200,2010000,1198.0,15.0,Petrol Bike,211,https://www.carandbike.com/ducati-bikes/monster-1200,3.16,188.0
 MV Agusta Brutale 1090,2102268,1078.0,15.0,Petrol Bike,183,https://www.carandbike.com/mv-agusta-bikes/brutale-1090,3.87,139.0
-Kawasaki Z H2,2190000,998.0,15.0,Petrol Bike,239,https://www.carandbike.com/kawasaki-bikes/z-h2,5.06,102.0
-Kawasaki Ninja H2 SX,2289000,998.0,15.0,Petrol Bike,256,https://www.carandbike.com/kawasaki-bikes/ninja-h2-sx,7.41,149.0
-Moto Guzzi Audace,2314000,1380.0,15.0,Petrol Bike,299,https://www.carandbike.com/moto-guzzi-bikes/audace,7.66,224.0
+Kawasaki Z H2,2190000,998.0,15.0,Petrol Bike,239,https://www.carandbike.com/kawasaki-bikes/z-h2,5.06,280.0
+Kawasaki Ninja H2 SX,2289000,998.0,15.0,Petrol Bike,256,https://www.carandbike.com/kawasaki-bikes/ninja-h2-sx,7.41,330.0
+Moto Guzzi Audace,2314000,1380.0,15.0,Petrol Bike,299,https://www.carandbike.com/moto-guzzi-bikes/audace,7.66,184.0
 BMW K 1600 B,2810000,1649.0,15.0,Petrol Bike,350,https://www.carandbike.com/bmw-bikes/k-1600-b,2.54,146.0
-Kawasaki Ninja H2 SX SE,2819000,998.0,15.0,Petrol Bike,260,https://www.carandbike.com/kawasaki-bikes/ninja-h2-sx-se,5.56,125.0
+Kawasaki Ninja H2 SX SE,2819000,998.0,15.0,Petrol Bike,260,https://www.carandbike.com/kawasaki-bikes/ninja-h2-sx-se,5.56,299.0
 BMW K 1600,2830000,1649.0,15.0,Petrol Bike,350,https://www.carandbike.com/bmw-bikes/k-1600,5.0,109.0
 Moto Guzzi MGX-21,3026000,1380.0,15.0,Petrol Bike,341,https://www.carandbike.com/moto-guzzi-bikes/mgx-21,3.83,154.0
 Harley-Davidson Street Glide Special,3053000,1745.0,15.0,Petrol Bike,361,https://www.carandbike.com/harley-davidson-bikes/street-glide-special,3.22,97.0
 Harley-Davidson Road Glide Special,3299000,1745.0,15.0,Petrol Bike,372,https://www.carandbike.com/harley-davidson-bikes/road-glide-special,4.53,233.0
-Kawasaki Ninja H2,3499000,998.0,15.0,Petrol Bike,238,https://www.carandbike.com/kawasaki-bikes/ninja-h2,8.16,231.0
+Kawasaki Ninja H2,3499000,998.0,15.0,Petrol Bike,238,https://www.carandbike.com/kawasaki-bikes/ninja-h2,8.16,296.0
 MV Agusta F4 RR,3883000,998.0,15.0,Petrol Bike,190,https://www.carandbike.com/mv-agusta-bikes/f4-rr,4.44,204.0
-Indian Roadmaster,3900000,1811.0,15.0,Petrol Bike,421,https://www.carandbike.com/indian-bikes/roadmaster,5.61,232.0
+Indian Roadmaster,3900000,1811.0,15.0,Petrol Bike,421,https://www.carandbike.com/indian-bikes/roadmaster,5.61,132.0
 Indian Roadmaster Elite,4800000,1811.0,15.0,Petrol Bike,433,https://www.carandbike.com/indian-bikes/roadmaster-elite,6.72,181.0
 Ducati 1299 Panigale,5182000,1285.0,15.0,Petrol Bike,190,https://www.carandbike.com/ducati-bikes/1299-panigale,4.68,187.0
-Kawasaki Ninja H2R,7990000,998.0,15.0,Petrol Bike,216,https://www.carandbike.com/kawasaki-bikes/ninja-h2r,8.33,155.0
+Kawasaki Ninja H2R,7990000,998.0,15.0,Petrol Bike,216,https://www.carandbike.com/kawasaki-bikes/ninja-h2r,8.33,355.0
 MV Agusta Dragster 800 RR,2052356,798.0,14.9,Petrol Bike,168,https://www.carandbike.com/mv-agusta-bikes/dragster-800-rr,8.27,121.0
 Ducati Panigale V4,2350000,1103.0,14.5,Petrol Bike,195,https://www.carandbike.com/ducati-bikes/panigale-v4,4.01,175.0
 Ducati Multistrada V4,1899000,1158.0,14.3,Petrol Bike,232,https://www.carandbike.com/ducati-bikes/multistrada-v4,5.48,140.0
