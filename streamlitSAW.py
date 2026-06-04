@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 st.set_page_config(page_title="SCPK")
-st.title("Pemilihan Motor Bekas")
+st.title("Pemilihan Motor")
 st.subheader("Metode Simple Additive Weighting (SAW)")
 
 df=pd.read_csv('bike_dataset.csv',usecols=lambda col: col!='links')
