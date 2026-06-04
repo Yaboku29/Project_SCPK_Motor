@@ -13,8 +13,12 @@ data=df[(df['type_of_bike']=='Petrol Bike')]
 data=data.drop(columns='type_of_bike')
 selected_data=data.copy() # untuk data pilihan
 # Using "with" notation
-page = st.sidebar.radio ("Navigasi", ("Semua Data", "Data Pilihan"))
-if page == "Semua Data":
+page = st.sidebar.radio ("Navigasi", ("Dataset Mentah","Semua Alternatif", "Alternatif Pilihan","CRUD"))
+if page == "Dataset Mentah":
+    raw_df = pd.read_csv('bike_dataset.csv')
+    st.dataframe(raw_df)
+
+elif page == "Semua Alternatif":
     tab1, tab2 = st.tabs(["Matriks Keputusan", "Kriteria"])
     with tab1:
         st.dataframe(data)
@@ -92,7 +96,6 @@ if page == "Semua Data":
                 hasil_ranking_data.index.name = "Ranking"
                 st.dataframe(hasil_ranking_data)
             with tab6:
-                
                 best_alt = hasil_ranking.index[0]
                 st.write(best_alt)
                 st.text(f"Motor Bekas Terbaik Adalah {best_alt}")
@@ -180,9 +183,9 @@ if page == "Semua Data":
                 top10_data.index.name = "Ranking"
                 st.dataframe(top10_data)
             
-elif page == "Data Pilihan":
+elif page == "Alternatif Pilihan":
     tab1,tab2,tab3=st.tabs([
-        "Semua Data",
+        "Matriks Keputusan",
         "Pilih Alternatif",
         "Kriteria"
     ])
@@ -345,3 +348,193 @@ elif page == "Data Pilihan":
                 pilihan_data.index = pilihan_data.index + 1
                 pilihan_data.index.name = "Ranking"
                 st.dataframe(pilihan_data)
+                
+elif page == "CRUD":
+    tabs1,tabs2,tabs3 = st.tabs(["Input Data", "Edit Data", "Hapus Data"]);
+
+    dfcrud = pd.read_csv("bike_dataset.csv")    
+    dfc=dfcrud[(dfcrud['type_of_bike']=='Petrol Bike')]
+    
+    with tabs1:
+        with st.form("tambah_motor"):
+            model = st.text_input("Nama Motor")
+            price = st.number_input("Harga", min_value=1000)
+            cc = st.number_input("CC", min_value=50.0)
+            mileage = st.number_input("Mileage" , min_value=1)
+            tob = st.text_input("Type", value="Petrol Bike", disabled=True)
+            weight = st.number_input("Weight", min_value=100)
+            links = st.text_input("Links", placeholder="https://", value="https://")
+            accel = st.number_input("Acceleration Speed", min_value=1.0)
+            topsp = st.number_input("Top Speed", min_value=20)
+
+            if st.form_submit_button("Tambah"):
+                if model.strip() == "":
+                    st.error("Nama motor wajib diisi")
+                elif len(model.strip()) < 3:
+                    st.error("Nama motor minimal 3 karakter")
+                elif model in df["model_name"].values:
+                    st.error("Motor sudah ada di dataset")
+                elif price < 1000:
+                    st.error("Harga tidak masuk akal")
+                elif cc < 50:
+                    st.error("CC minimal 50")
+                elif mileage < 1:
+                    st.error("Mileage harus lebih dari 0")
+                elif weight < 100:
+                    st.error("Berat motor tidak masuk akal")
+                elif links.strip() == "":
+                    st.error("Link wajib diisi")
+                elif not (
+                    links.startswith("http://")
+                    or links.startswith("https://")
+                ):
+                    st.error("Link harus diawali http:// atau https://")
+                elif "." not in links:
+                    st.error("Format link tidak valid")
+                elif accel <= 0:
+                    st.error("Acceleration Speed harus lebih dari 0")
+                elif accel > 30:
+                    st.error("Acceleration Speed tidak masuk akal")
+                elif topsp < 20:
+                    st.error("Top Speed tidak masuk akal")
+                elif topsp > 500:
+                    st.error("Top Speed tidak masuk akal")
+                else:
+                    dfc.loc[len(dfc)] = {
+                        "model_name": model,
+                        "price": price,
+                        "CC" : cc,
+                        "mileage" : mileage,
+                        "type_of_bike" : tob,
+                        "weight_in_kg" : weight,
+                        "links" : links,
+                        "acceleration_speed" : accel,
+                        "top_speed" : topsp
+                    }
+                    dfc.to_csv(
+                        "bike_dataset.csv",
+                        index=False
+                    )
+                    st.success("Motor ditambahkan")
+                    st.rerun()
+
+    with tabs2:
+
+        motor_pilih = st.selectbox(
+            "Pilih Motor",
+            dfc["model_name"]
+        )
+
+        with st.form("edit_motor"):
+
+            row = dfc[dfc["model_name"] == motor_pilih].iloc[0]
+
+            model_name = st.text_input(
+                "Model",
+                value=row["model_name"]
+            )
+
+            price = st.number_input(
+                "Harga",
+                min_value=1,
+                value=int(row["price"])
+            )
+
+            cc = st.number_input(
+                "CC",
+                min_value=1.0,
+                value=max(1.0, float(row["CC"]))
+            )
+
+            mileage = st.number_input(
+                "Mileage",
+                min_value=1,
+                value=int(row["mileage"])
+            )
+
+            tob = st.text_input(
+                "Type",
+                value=row["type_of_bike"],
+                disabled=True
+            )
+
+            weight = st.number_input(
+                "Weight",
+                min_value=1,
+                value=int(row["weight_in_kg"])
+            )
+
+            links = st.text_input(
+                "Links",
+                value=row["links"]
+            )
+
+            accel = st.number_input(
+                "Acceleration Speed",
+                min_value=1.0,
+                value=float(row["acceleration_speed"])
+            )
+
+            topsp = st.number_input(
+                "Top Speed",
+                min_value=1,
+                value=int(row["top_speed"])
+            )
+
+            if st.form_submit_button("Edit"):
+
+                if links.strip() == "":
+                    st.error("Link wajib diisi")
+
+                elif not (
+                    links.startswith("http://")
+                    or links.startswith("https://")
+                ):
+                    st.error("Link harus diawali http:// atau https://")
+
+                else:
+
+                    idx = dfc[dfc["model_name"] == motor_pilih].index[0]
+
+                    dfc.loc[idx, "model_name"] = model_name
+                    dfc.loc[idx, "price"] = price
+                    dfc.loc[idx, "CC"] = cc
+                    dfc.loc[idx, "mileage"] = mileage
+                    dfc.loc[idx, "weight_in_kg"] = weight
+                    dfc.loc[idx, "links"] = links
+                    dfc.loc[idx, "acceleration_speed"] = accel
+                    dfc.loc[idx, "top_speed"] = topsp
+
+                    dfc.to_csv(
+                        "bike_dataset.csv",
+                        index=False
+                    )
+
+                    st.success("Data berhasil diperbarui")
+                    st.rerun()
+    with tabs3:
+
+        motor_hapus = st.selectbox(
+            "Pilih Motor yang Akan Dihapus",
+            dfc["model_name"]
+        )
+
+        st.warning(
+            f"Motor yang akan dihapus: {motor_hapus}"
+        )
+
+        if st.button("Hapus Motor"):
+
+            dfc = dfc[
+                dfc["model_name"] != motor_hapus
+            ]
+
+            dfc.to_csv(
+                "bike_dataset.csv",
+                index=False
+            )
+
+            st.success(
+                f"{motor_hapus} berhasil dihapus"
+            )
+            st.rerun()
