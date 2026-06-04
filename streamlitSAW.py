@@ -95,7 +95,7 @@ if page == "Semua Data":
                 
                 best_alt = hasil_ranking.index[0]
                 st.write(best_alt)
-                st.text(f"Motor Bekas Terbaik Adalah {best_alt}")
+                st.text(f"Motor Terbaik Adalah {best_alt}")
                 
                 df2=pd.read_csv('bike_dataset.csv')
                 df2=df2.set_index('model_name')
@@ -277,7 +277,7 @@ elif page == "Data Pilihan":
                 hasil_ranking=df_preference_value.sort_values(by='preference_value',ascending=False)
                 best_alt = hasil_ranking.index[0]
                 st.write(best_alt)
-                st.text(f"Motor Bekas Terbaik Adalah {best_alt}")
+                st.text(f"Motor Terbaik Adalah {best_alt}")
                 
                 df2=pd.read_csv('bike_dataset.csv')
                 df2=df2.set_index('model_name')
