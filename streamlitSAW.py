@@ -182,6 +182,8 @@ elif page == "Semua Alternatif":
                 top10_data.index = top10_data.index + 1
                 top10_data.index.name = "Ranking"
                 st.dataframe(top10_data)
+                csv = top10_data.to_csv(index=False).encode('utf-8')
+                st.download_button(label='Unduh TOP 10', data=csv, file_name='top10_motor_saw.csv', mime="text/csv")
             
 elif page == "Alternatif Pilihan":
     tab1,tab2,tab3=st.tabs([
@@ -348,13 +350,16 @@ elif page == "Alternatif Pilihan":
                 pilihan_data.index = pilihan_data.index + 1
                 pilihan_data.index.name = "Ranking"
                 st.dataframe(pilihan_data)
+
+                csv = pilihan_data.to_csv(index=False).encode('utf-8')
+                st.download_button(label='Unduh Data Pilihan', data=csv, file_name='top_pilihan_motor_saw.csv', mime="text/csv")
                 
 elif page == "CRUD":
     tabs1,tabs2,tabs3 = st.tabs(["Input Data", "Edit Data", "Hapus Data"]);
 
     dfcrud = pd.read_csv("bike_dataset.csv")    
     dfc=dfcrud[(dfcrud['type_of_bike']=='Petrol Bike')]
-    
+
     with tabs1:
         with st.form("tambah_motor"):
             model = st.text_input("Nama Motor")
@@ -482,16 +487,37 @@ elif page == "CRUD":
             )
 
             if st.form_submit_button("Edit"):
-
-                if links.strip() == "":
+                if model.strip() == "":
+                    st.error("Nama motor wajib diisi")
+                elif len(model.strip()) < 3:
+                    st.error("Nama motor minimal 3 karakter")
+                elif model in df["model_name"].values:
+                    st.error("Motor sudah ada di dataset")
+                elif price < 1000:
+                    st.error("Harga tidak masuk akal")
+                elif cc < 50:
+                    st.error("CC minimal 50")
+                elif mileage < 1:
+                    st.error("Mileage harus lebih dari 0")
+                elif weight < 100:
+                    st.error("Berat motor tidak masuk akal")
+                elif links.strip() == "":
                     st.error("Link wajib diisi")
-
                 elif not (
                     links.startswith("http://")
                     or links.startswith("https://")
                 ):
                     st.error("Link harus diawali http:// atau https://")
-
+                elif "." not in links:
+                    st.error("Format link tidak valid")
+                elif accel <= 0:
+                    st.error("Acceleration Speed harus lebih dari 0")
+                elif accel > 30:
+                    st.error("Acceleration Speed tidak masuk akal")
+                elif topsp < 20:
+                    st.error("Top Speed tidak masuk akal")
+                elif topsp > 500:
+                    st.error("Top Speed tidak masuk akal")
                 else:
 
                     idx = dfc[dfc["model_name"] == motor_pilih].index[0]

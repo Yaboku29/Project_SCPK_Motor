@@ -1,66 +1,20 @@
 model_name,price,CC,mileage,type_of_bike,weight_in_kg,links,acceleration_speed,top_speed
-Gravton Motors Quanta,99000.0,0.0,320.0,Electric Bike,100.0,https://www.carandbike.com/gravton-motors-bikes/quanta,4.2,70.0
-Simple Energy One,109999.0,0.0,236.0,Electric Bike,110.0,https://www.carandbike.com/simple-energy-bikes/one,3.6,100.0
-Okaya Classiq,69900.0,0.0,200.0,Electric Bike,95.0,https://www.carandbike.com/okaya-bikes/classiq,8.0,25.0
-Oben Electric Rorr,102999.0,0.0,200.0,Electric Bike,120.0,https://www.carandbike.com/oben-electric-bikes/rorr,3.0,100.0
-Ola Electric S1,85099.0,0.0,181.0,Electric Bike,121.0,https://www.carandbike.com/ola-electric-bikes/s1,2.9,116.0
-Ola Electric S1 Pro,120149.0,0.0,181.0,Electric Bike,125.0,https://www.carandbike.com/ola-electric-bikes/s1-pro,2.9,116.0
-Revolt RV300,114264.0,0.0,180.0,Electric Bike,101.0,https://www.carandbike.com/revolt-bikes/rv300,4.0,65.0
-Okinawa Praise,71990.0,0.0,170.0,Electric Bike,96.0,https://www.carandbike.com/okinawa-bikes/praise,9.43,78.0
-Hero Electric NYX HX,67540.0,0.0,165.0,Electric Bike,73.0,https://www.carandbike.com/hero-electric-bikes/nyx-hx,3.3,42.0
-Crayon Motors Envy,53000.0,0.0,160.0,Electric Bike,100.0,https://www.carandbike.com/crayon-motors-bikes/envy,9.0,25.0
-22Kymco Flow,74740.0,0.0,160.0,Electric Bike,85.0,https://www.carandbike.com/22kymco-bikes/flow,5.5,60.0
-Okinawa Okhi 90,103866.0,0.0,160.0,Electric Bike,96.0,https://www.carandbike.com/okinawa-bikes/okhi-90,5.0,90.0
-Revolt RV400,129463.0,0.0,150.0,Electric Bike,108.0,https://www.carandbike.com/revolt-bikes/rv400,4.0,65.0
-Kabira Mobility KM 4000,136990.0,0.0,150.0,Electric Bike,150.0,https://www.carandbike.com/kabira-mobility-bikes/km-4000,3.1,120.0
-One Moto Electa,199000.0,0.0,150.0,Electric Bike,115.0,https://www.carandbike.com/one-moto-bikes/electa,3.3,85.0
-Odysse Evoqis,157000.0,0.0,140.0,Electric Bike,200.0,https://www.carandbike.com/odysse-bikes/evoqis,4.2,80.0
-Okinawa i-Praise,108749.0,0.0,139.0,Electric Bike,150.0,https://www.carandbike.com/okinawa-bikes/i-praise,9.43,75.0
-Li-ions Elektrik Spock,65000.0,0.0,130.0,Electric Bike,90.0,https://www.carandbike.com/li-ions-elektrik-bikes/spock,3.9,45.0
-Tork Motors Kratos,102499.0,0.0,120.0,Electric Bike,120.0,https://www.carandbike.com/tork-motors-bikes/kratos,4.0,100.0
-Kabira Mobility KM 3000,126990.0,0.0,120.0,Electric Bike,150.0,https://www.carandbike.com/kabira-mobility-bikes/km-3000,3.3,100.0
-EeVe Soul,140000.0,0.0,120.0,Electric Bike,140.0,https://www.carandbike.com/eeve-bikes/soul,8.0,55.0
-BGauss D15,99999.0,0.0,115.0,Electric Bike,107.0,https://www.carandbike.com/bgauss-bikes/d15,7.0,60.0
-Nexzu Mobility Dextro,47000.0,0.0,110.0,Electric Bike,62.0,https://www.carandbike.com/nexzu-mobility-bikes/dextro,10.0,35.0
-BGauss A2,52499.0,0.0,110.0,Electric Bike,88.0,https://www.carandbike.com/bgauss-bikes/a2,12.0,25.0
-Nexzu Mobility Dextro +,66500.0,0.0,110.0,Electric Bike,62.0,https://www.carandbike.com/nexzu-mobility-bikes/dextro-plus,10.0,35.0
-Hero Electric Photon HX,74240.0,0.0,108.0,Electric Bike,87.0,https://www.carandbike.com/hero-electric-bikes/photon-hx,9.58,45.0
 Bajaj CT 110,46413.0,115.0,104.0,Petrol Bike,117.0,https://www.carandbike.com/bajaj-bikes/ct-110,3.0,90.0
-Atumobile Atum 1.0,50000.0,0.0,100.0,Electric Bike,108.0,https://www.carandbike.com/atumobile-bikes/atum-10,10.0,25.0
-Okinawa Ridge +,64998.0,0.0,100.0,Electric Bike,96.0,https://www.carandbike.com/okinawa-bikes/ridge-plus,9.0,45.0
-Boom Motors Corbett-14,86999.0,0.0,100.0,Electric Bike,90.0,https://www.carandbike.com/boom-motors-bikes/corbett-14,9.0,55.0
-Earth Energy EV Glyde +,92000.0,0.0,100.0,Electric Bike,110.0,https://www.carandbike.com/earth-energy-ev-bikes/glyde-plus,8.0,90.0
-Ather 450,118995.0,0.0,100.0,Electric Bike,108.0,https://www.carandbike.com/ather-bikes/450,3.3,80.0
 Bajaj Platina 100,52915.0,102.0,96.9,Petrol Bike,117.0,https://www.carandbike.com/bajaj-bikes/platina-100,3.0,90.0
-Bajaj Chetak,100000.0,0.0,95.0,Electric Bike,100.0,https://www.carandbike.com/bajaj-bikes/chetak,4.5,80.0
 Bajaj CT 100,40794.0,102.0,89.5,Petrol Bike,114.0,https://www.carandbike.com/bajaj-bikes/ct-100,3.3,90.0
 Hero HF Deluxe i3s,59800.0,97.2,88.5,Petrol Bike,110.0,https://www.carandbike.com/hero-bikes/hf-deluxe-i3s,3.6,90.0
 TVS Star City +,65865.0,109.7,86.0,Petrol Bike,116.0,https://www.carandbike.com/tvs-bikes/star-city-plus,3.2,90.0
-Hero Electric Flash LX,59640.0,0.0,85.0,Electric Bike,69.0,https://www.carandbike.com/hero-electric-bikes/flash-lx,10.0,42.0
-Hero Electric Atria LX,66640.0,0.0,85.0,Electric Bike,69.0,https://www.carandbike.com/hero-electric-bikes/atria-lx,10.0,25.0
-Ampere Zeal Ex,74489.0,0.0,85.0,Electric Bike,78.0,https://www.carandbike.com/ampere-bikes/zeal-ex,11.0,50.0
 Hero Passion Pro i3S,67400.0,113.2,84.0,Petrol Bike,117.0,https://www.carandbike.com/hero-bikes/passion-pro-i3s,6.0,90.0
-Bounce Infinity E1,45099.0,0.0,83.0,Electric Bike,94.0,https://www.carandbike.com/bounce-bikes/infinity-e1,8.0,65.0
 Hero HF Deluxe,48950.0,97.2,83.0,Petrol Bike,109.0,https://www.carandbike.com/hero-bikes/hf-deluxe,7.0,85.0
-Hero Electric Optima HX,55580.0,0.0,82.0,Electric Bike,73.0,https://www.carandbike.com/hero-electric-bikes/optima-hx,8.0,42.0
-Polarity Executive,38000.0,0.0,80.0,Electric Bike,55.0,https://www.carandbike.com/polarity-bikes/executive,9.0,40.0
-Polarity Sport,40000.0,0.0,80.0,Electric Bike,55.0,https://www.carandbike.com/polarity-bikes/sport,8.0,45.0
 Bajaj Platina 110,65930.0,115.0,80.0,Petrol Bike,108.0,https://www.carandbike.com/bajaj-bikes/platina-110,5.9,90.0
-Gemopai Astrid Lite,84787.0,0.0,80.0,Electric Bike,96.0,https://www.carandbike.com/gemopai-bikes/astrid-lite,7.39,65.0
 Kawasaki KLX 110,299500.0,112.0,80.0,Petrol Bike,76.0,https://www.carandbike.com/kawasaki-bikes/klx-110,8.5,50.0
 TVS Sport,52500.0,109.7,76.4,Petrol Bike,110.0,https://www.carandbike.com/tvs-bikes/sport,3.0,90.0
 Hero Splendor iSmart,65950.0,113.2,75.0,Petrol Bike,116.0,https://www.carandbike.com/hero-bikes/splendor-ismart,6.0,92.0
-Odysse V2,75000.0,0.0,75.0,Electric Bike,75.0,https://www.carandbike.com/odysse-bikes/v2,10.0,25.0
-Ampere Magnus Pro,79966.0,0.0,75.0,Electric Bike,94.0,https://www.carandbike.com/ampere-bikes/magnus-pro,10.0,55.0
-TVS iQube,166358.0,0.0,75.0,Electric Bike,118.0,https://www.carandbike.com/tvs-bikes/iqube,4.2,78.0
 Honda CD 110 Dream,65248.0,109.5,74.0,Petrol Bike,109.0,https://www.carandbike.com/honda-bikes/cd-110-dream,5.1,86.0
 Honda Livo,70799.0,109.5,74.0,Petrol Bike,115.0,https://www.carandbike.com/honda-bikes/livo,5.0,86.0
 TVS Victor,54042.0,109.7,72.0,Petrol Bike,112.0,https://www.carandbike.com/tvs-bikes/victor,6.0,94.0
 Hero HF 100,49400.0,97.2,70.0,Petrol Bike,110.0,https://www.carandbike.com/hero-bikes/hf-100,7.7,90.0
-Odysse Racer,59500.0,0.0,70.0,Electric Bike,100.0,https://www.carandbike.com/odysse-bikes/racer,8.0,45.0
-BGauss B8,62999.0,0.0,70.0,Electric Bike,88.0,https://www.carandbike.com/bgauss-bikes/b8,11.0,50.0
 Hero Splendor +,69380.0,97.2,70.0,Petrol Bike,110.0,https://www.carandbike.com/hero-bikes/splendor-plus,7.5,93.0
-Ampere Zeal,74490.0,0.0,70.0,Electric Bike,75.0,https://www.carandbike.com/ampere-bikes/zeal,13.8,55.0
 TVS Radeon,59942.0,109.7,69.0,Petrol Bike,116.0,https://www.carandbike.com/tvs-bikes/radeon,6.0,95.0
 Hero Pleasure + 110,61900.0,110.9,69.0,Petrol Bike,104.0,https://www.carandbike.com/hero-bikes/pleasure-plus-110,9.0,77.0
 TVS XL 100,40990.0,99.7,67.0,Petrol Bike,88.0,https://www.carandbike.com/tvs-bikes/xl-100,13.0,60.0
@@ -79,17 +33,10 @@ TVS Scooty Zest 110,59925.0,109.7,62.0,Petrol Bike,97.0,https://www.carandbike.c
 TVS Jupiter,70085.0,109.7,62.0,Petrol Bike,109.0,https://www.carandbike.com/tvs-bikes/jupiter,4.58,85.0
 Bajaj Pulsar 125,72122.0,124.4,62.0,Petrol Bike,140.0,https://www.carandbike.com/bajaj-bikes/pulsar-125,3.0,105.0
 Honda CB Unicorn 160,98931.0,162.7,62.0,Petrol Bike,134.0,https://www.carandbike.com/honda-bikes/cb-unicorn-160,4.3,101.9
-Lohia Omastar,40850.0,0.0,60.0,Electric Bike,66.0,https://www.carandbike.com/lohia-bikes/omastar,10.0,25.0
-Okinawa R30,58992.0,0.0,60.0,Electric Bike,150.0,https://www.carandbike.com/okinawa-bikes/r30,10.0,25.0
-Okinawa Dual,58998.0,0.0,60.0,Electric Bike,96.0,https://www.carandbike.com/okinawa-bikes/dual,10.0,25.0
 Hero Super Splendor,73900.0,124.7,60.0,Petrol Bike,123.0,https://www.carandbike.com/hero-bikes/super-splendor,4.7,100.0
 Hero Glamour 125,74900.0,124.7,60.0,Petrol Bike,126.0,https://www.carandbike.com/hero-bikes/glamour-125,4.6,91.0
 TVS Ntorq 125,77106.0,124.8,60.0,Petrol Bike,118.0,https://www.carandbike.com/tvs-bikes/ntorq-125,6.0,95.0
 Kawasaki KLX 140G,406600.0,144.0,60.0,Petrol Bike,99.0,https://www.carandbike.com/kawasaki-bikes/klx-140g,6.5,70.0
-Evolet Pony,39499.0,0.0,55.0,Electric Bike,82.0,https://www.carandbike.com/evolet-bikes/pony,10.0,25.0
-Evolet Polo,44499.0,0.0,55.0,Electric Bike,82.0,https://www.carandbike.com/evolet-bikes/polo,10.0,25.0
-Evolet Derby,46499.0,0.0,55.0,Electric Bike,82.0,https://www.carandbike.com/evolet-bikes/derby,10.0,25.0
-Ampere Reo Elite,47264.0,0.0,55.0,Electric Bike,68.0,https://www.carandbike.com/ampere-bikes/reo-elite,12.0,25.0
 Honda Dio,64510.0,109.5,55.0,Petrol Bike,103.0,https://www.carandbike.com/honda-bikes/dio,6.36,83.0
 Suzuki Avenis,86500.0,124.3,55.0,Petrol Bike,106.0,https://www.carandbike.com/suzuki-bikes/avenis,8.0,90.0
 Hero Xtreme 160R,111610.0,163.0,55.0,Petrol Bike,139.0,https://www.carandbike.com/hero-bikes/xtreme-160r,3.0,115.0
@@ -97,7 +44,6 @@ Kawasaki KX 100,487800.0,99.0,55.0,Petrol Bike,77.0,https://www.carandbike.com/k
 Hero Destini 125,67990.0,124.6,54.0,Petrol Bike,113.0,https://www.carandbike.com/hero-bikes/destini-125,5.0,80.0
 Honda Grazia,82566.0,124.0,54.0,Petrol Bike,107.0,https://www.carandbike.com/honda-bikes/grazia,5.9,92.0
 Suzuki Burgman,84300.0,124.0,53.5,Petrol Bike,110.0,https://www.carandbike.com/suzuki-bikes/burgman,6.0,96.0
-Okinawa Lite,59990.0,0.0,50.0,Electric Bike,150.0,https://www.carandbike.com/okinawa-bikes/lite,10.0,25.0
 TVS Jupiter 125,73400.0,124.8,50.0,Petrol Bike,109.0,https://www.carandbike.com/tvs-bikes/jupiter-125,4.7,90.0
 Bajaj Pulsar NS 125,93818.0,124.4,50.0,Petrol Bike,144.0,https://www.carandbike.com/bajaj-bikes/pulsar-ns-125,3.0,105.0
 Hero Maestro Edge 125,73450.0,124.6,49.0,Petrol Bike,110.0,https://www.carandbike.com/hero-bikes/maestro-edge-125,6.0,90.0
@@ -107,9 +53,6 @@ Yamaha MT-15 V2.0,160900.0,155.0,48.0,Petrol Bike,139.0,https://www.carandbike.c
 TVS Apache RTR 180,103950.0,177.4,47.0,Petrol Bike,139.0,https://www.carandbike.com/tvs-bikes/apache-rtr-180,4.0,113.0
 Suzuki Gixxer SF,129300.0,154.9,47.0,Petrol Bike,146.0,https://www.carandbike.com/suzuki-bikes/gixxer-sf,3.0,127.0
 Yamaha R15S V3.0,158939.0,155.0,47.0,Petrol Bike,142.0,https://www.carandbike.com/yamaha-bikes/r15s-v30,2.3,136.0
-Ampere V48,38719.0,0.0,45.0,Electric Bike,84.0,https://www.carandbike.com/ampere-bikes/v48,12.0,25.0
-Ampere Reo,44838.0,0.0,45.0,Electric Bike,70.0,https://www.carandbike.com/ampere-bikes/reo,12.0,25.0
-Ampere Magnus,45999.0,0.0,45.0,Electric Bike,94.0,https://www.carandbike.com/ampere-bikes/magnus,11.0,25.0
 Honda Activa 6G,69645.0,109.5,45.0,Petrol Bike,107.0,https://www.carandbike.com/honda-bikes/activa-6g,7.0,85.0
 Honda Activa 125 FI,72637.0,124.0,45.0,Petrol Bike,111.0,https://www.carandbike.com/honda-bikes/activa-125-fi,5.7,93.84
 Piaggio Vespa,91492.0,125.0,45.0,Petrol Bike,114.0,https://www.carandbike.com/piaggio-bikes/vespa,3.9,90.0
