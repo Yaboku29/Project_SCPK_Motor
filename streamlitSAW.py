@@ -4,8 +4,35 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 st.set_page_config(page_title="SCPK")
-st.title("Pemilihan Motor")
-st.subheader("Metode Simple Additive Weighting (SAW)")
+# st.title("Pemilihan Motor")
+# st.subheader("Metode Simple Additive Weighting (SAW)")
+
+st.markdown("""
+<div style='text-align:center'>
+    <h1>MotoMatch</h1>
+    <h3>Sistem Pendukung Keputusan Pemilihan Motor Terbaik</h3>
+    <p>Temukan motor yang sesuai dengan kebutuhan Anda menggunakan metode SAW</p>
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+.stApp{
+    background-color:#0f172a;
+    color:white;
+}
+
+[data-testid="stSidebar"]{
+    background-color:#111827;
+}
+
+h1,h2,h3{
+    color:#f97316;
+}
+</style>
+""", unsafe_allow_html=True)
+
+
 
 df=pd.read_csv('bike_dataset.csv',usecols=lambda col: col!='links')
 df=df.set_index('model_name')
@@ -13,7 +40,22 @@ data=df[(df['type_of_bike']=='Petrol Bike')]
 data=data.drop(columns='type_of_bike')
 selected_data=data.copy() # untuk data pilihan
 # Using "with" notation
-page = st.sidebar.radio ("Navigasi", ("Dataset Mentah","Semua Alternatif", "Alternatif Pilihan","CRUD"))
+# page = st.sidebar.radio ("Navigasi", ("Dataset Mentah","Semua Alternatif", "Alternatif Pilihan","CRUD"))
+
+with st.sidebar:
+
+    st.title("MotoMatch")
+
+    page = st.radio(
+        "Menu",
+        [
+            "Dataset Mentah",
+            "Semua Alternatif",
+            "Alternatif Pilihan",
+            "CRUD"
+        ]
+    )
+
 if page == "Dataset Mentah":
     raw_df = pd.read_csv('bike_dataset.csv')
     st.dataframe(raw_df)
