@@ -13,8 +13,12 @@ data=df[(df['type_of_bike']=='Petrol Bike')]
 data=data.drop(columns='type_of_bike')
 selected_data=data.copy() # untuk data pilihan
 # Using "with" notation
-page = st.sidebar.radio ("Navigasi", ("Semua Data", "Data Pilihan"))
-if page == "Semua Data":
+page = st.sidebar.radio ("Navigasi", ("Dataset Mentah","Semua Alternatif", "Alternatif Pilihan"))
+if page == "Dataset Mentah":
+    raw_df = pd.read_csv('bike_dataset.csv')
+    st.dataframe(raw_df)
+
+elif page == "Semua Alternatif":
     tab1, tab2 = st.tabs(["Matriks Keputusan", "Kriteria"])
     with tab1:
         st.dataframe(data)
@@ -22,25 +26,55 @@ if page == "Semua Data":
         st.title("Kriteria SAW")
         col1, col2 = st.columns([4,1])
         with col1:
-            w_price = st.number_input("Bobot Price", 0.0, 1.0, 0.16)
-            w_cc = st.number_input("Bobot CC", 0.0, 1.0, 0.16)
-            w_mileage = st.number_input("Bobot Mileage", 0.0, 1.0, 0.16)
-            w_weight = st.number_input("Bobot Weight", 0.0, 1.0, 0.16)
-            w_acs = st.number_input("Bobot Acceleration Speed", 0.0, 1.0, 0.16)
-            w_tps = st.number_input("Bobot Top Speed", 0.0, 1.0, 0.16)
+            price_priority = st.slider(
+                "Harga",
+                1, 5, 3,
+                help="1 = Tidak Penting, 5 = Sangat Penting"
+            )
 
-            total = w_price + w_cc + w_mileage + w_weight + w_acs + w_tps
+            cc_priority = st.slider(
+                "CC Mesin",
+                1, 5, 3
+            )
 
-            bobot={
-                'price':w_price,
-                'CC':w_cc,
-                'mileage':w_mileage,
-                'weight_in_kg':w_weight,
-                'acceleration_speed':w_acs,
-                'top_speed':w_tps
+            mileage_priority = st.slider(
+                "Irit BBM",
+                1, 5, 3
+            )
+
+            weight_priority = st.slider(
+                "Berat Motor",
+                1, 5, 3
+            )
+
+            acs_priority = st.slider(
+                "Akselerasi",
+                1, 5, 3
+            )
+
+            tps_priority = st.slider(
+                "Kecepatan Maksimum",
+                1, 5, 3
+            )
+
+            prioritas = {
+                'price': price_priority,
+                'CC': cc_priority,
+                'mileage': mileage_priority,
+                'weight_in_kg': weight_priority,
+                'acceleration_speed': acs_priority,
+                'top_speed': tps_priority
             }
 
-            st.write("Total Bobot:", round(total, 2))
+            total_prioritas = sum(prioritas.values())
+
+            bobot = {
+                k: v/total_prioritas
+                for k, v in prioritas.items()
+            }
+
+
+            # st.write("Total Bobot:", round(total, 2))
 
         with col2:
             at_price = st.selectbox("Atributte ",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atPrice" )
@@ -60,9 +94,9 @@ if page == "Semua Data":
             }
 
     if st.button("Buat Alternatif Terbaik"):
-        if abs(total - 1) > 0.001:
-            st.error("Total bobot harus 1")
-        elif None in atribut.values():
+        # if abs(total_prioritas - 1) > 0.001:
+        #     st.error("Total bobot harus 1")
+        if None in atribut.values():
             st.error("Semua Atribut harus dipilih")
         else:
             tab3,tab4,tab5,tab6,tab7,tab8 = st.tabs(["Matriks Ternormalisasi","Nilai Preferensi","Tabel Ranking","Alternatif Terbaik","Top 3","Top 10"])
@@ -92,7 +126,6 @@ if page == "Semua Data":
                 hasil_ranking_data.index.name = "Ranking"
                 st.dataframe(hasil_ranking_data)
             with tab6:
-                
                 best_alt = hasil_ranking.index[0]
                 st.write(best_alt)
                 st.text(f"Motor Terbaik Adalah {best_alt}")
@@ -179,10 +212,12 @@ if page == "Semua Data":
                 top10_data.index = top10_data.index + 1
                 top10_data.index.name = "Ranking"
                 st.dataframe(top10_data)
+                csv = top10_data.to_csv(index=False).encode('utf-8')
+                st.download_button(label='Unduh TOP 10', data=csv, file_name='top10_motor_saw.csv', mime="text/csv")
             
-elif page == "Data Pilihan":
+elif page == "Alternatif Pilihan":
     tab1,tab2,tab3=st.tabs([
-        "Semua Data",
+        "Matriks Keputusan",
         "Pilih Alternatif",
         "Kriteria"
     ])
@@ -206,25 +241,54 @@ elif page == "Data Pilihan":
         st.title("Kriteria SAW")
         col1, col2 = st.columns([4,1])
         with col1:
-            w_price = st.number_input("Bobot Price", 0.0, 1.0, 0.16)
-            w_cc = st.number_input("Bobot CC", 0.0, 1.0, 0.16)
-            w_mileage = st.number_input("Bobot Mileage", 0.0, 1.0, 0.16)
-            w_weight = st.number_input("Bobot Weight", 0.0, 1.0, 0.16)
-            w_acs = st.number_input("Bobot Acceleration Speed", 0.0, 1.0, 0.16)
-            w_tps = st.number_input("Bobot Top Speed", 0.0, 1.0, 0.16)
+            price_priority = st.slider(
+                "Harga",
+                1, 5, 3,
+                help="1 = Tidak Penting, 5 = Sangat Penting"
+            )
 
-            total = w_price + w_cc + w_mileage + w_weight + w_acs + w_tps
+            cc_priority = st.slider(
+                "CC Mesin",
+                1, 5, 3
+            )
 
-            bobot={
-                'price':w_price,
-                'CC':w_cc,
-                'mileage':w_mileage,
-                'weight_in_kg':w_weight,
-                'acceleration_speed':w_acs,
-                'top_speed':w_tps
+            mileage_priority = st.slider(
+                "Irit BBM",
+                1, 5, 3
+            )
+
+            weight_priority = st.slider(
+                "Berat Motor",
+                1, 5, 3
+            )
+
+            acs_priority = st.slider(
+                "Akselerasi",
+                1, 5, 3
+            )
+
+            tps_priority = st.slider(
+                "Kecepatan Maksimum",
+                1, 5, 3
+            )
+
+            prioritas = {
+                'price': price_priority,
+                'CC': cc_priority,
+                'mileage': mileage_priority,
+                'weight_in_kg': weight_priority,
+                'acceleration_speed': acs_priority,
+                'top_speed': tps_priority
             }
 
-            st.write("Total Bobot:", round(total, 2))
+            total_prioritas = sum(prioritas.values())
+
+            bobot = {
+                k: v/total_prioritas
+                for k, v in prioritas.items()
+            }
+
+            # st.write("Total Bobot:", round(total, 2))
 
         with col2:
             at_price = st.selectbox("Atributte ",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atPrice")
@@ -244,9 +308,9 @@ elif page == "Data Pilihan":
             }
 
     if st.button("Buat Alternatif Terbaik"):
-        if abs(total - 1) > 0.001:
-            st.error("Total bobot harus 1")
-        elif None in atribut.values():
+        # if abs(total_prioritas - 1) > 0.001:
+        #     st.error("Total bobot harus 1")
+        if None in atribut.values():
             st.error("Semua Atribut harus dipilih")
         elif len(pilihan) == 0:
             st.error(f"Pilih tepat {jumlah} motor")
@@ -345,3 +409,6 @@ elif page == "Data Pilihan":
                 pilihan_data.index = pilihan_data.index + 1
                 pilihan_data.index.name = "Ranking"
                 st.dataframe(pilihan_data)
+
+                csv = pilihan_data.to_csv(index=False).encode('utf-8')
+                st.download_button(label='Unduh Data Pilihan', data=csv, file_name='top_pilihan_motor_saw.csv', mime="text/csv")
