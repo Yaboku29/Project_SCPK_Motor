@@ -1,4 +1,9 @@
 # Pemilihan Motor Metode SAW
+
+Terdapat 2 branch:
+- main (praktikum)
+- crud (teori)
+
 ## Source Dataset
 https://www.kaggle.com/datasets/yashwanthkumarmn/motorcycles-in-india
 ## Anggota
