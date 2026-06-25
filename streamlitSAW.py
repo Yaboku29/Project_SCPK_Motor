@@ -66,37 +66,116 @@ elif page == "Semua Alternatif":
         st.dataframe(data)
     with tab2:
         st.title("Kriteria SAW")
+
+        st.subheader("Tujuan Pemilihan")
+
+        template = st.selectbox(
+            "Pilih Tujuan",
+            [
+                "Kustom",
+                "Harga Terbaik",
+                "Performa Terbaik",
+                "Irit Harian",
+                "Seimbang"
+            ]
+        )
+
+        if template == "Harga Terbaik":
+            st.info("Memprioritaskan motor dengan harga terjangkau namun tetap mempertimbangkan efisiensi.")
+            default = {
+                "price": 5,
+                "CC": 2,
+                "mileage": 4,
+                "weight_in_kg": 3,
+                "acceleration_speed": 2,
+                "top_speed": 2
+            }
+
+        elif template == "Performa Terbaik":
+            st.info("Memprioritaskan performa mesin, akselerasi, dan kecepatan maksimum.")
+            default = {
+                "price": 2,
+                "CC": 5,
+                "mileage": 2,
+                "weight_in_kg": 4,
+                "acceleration_speed": 5,
+                "top_speed": 5
+            }
+
+        elif template == "Irit Harian":
+            st.info("Cocok untuk penggunaan sehari-hari dengan fokus pada konsumsi BBM.")
+            default = {
+                "price": 4,
+                "CC": 2,
+                "mileage": 5,
+                "weight_in_kg": 3,
+                "acceleration_speed": 2,
+                "top_speed": 2
+            }
+
+        elif template == "Seimbang":
+            st.info("Memberikan bobot yang seimbang pada seluruh kriteria.")
+            default = {
+                "price": 3,
+                "CC": 3,
+                "mileage": 3,
+                "weight_in_kg": 3,
+                "acceleration_speed": 3,
+                "top_speed": 3
+            }
+
+        else:
+            st.info("Atur sendiri tingkat kepentingan setiap kriteria menggunakan slider.")
+            default = {
+                "price": 3,
+                "CC": 3,
+                "mileage": 3,
+                "weight_in_kg": 3,
+                "acceleration_speed": 3,
+                "top_speed": 3
+            }
+        st.info(
+            "Geser slider untuk menentukan tingkat kepentingan setiap kriteria. "
+            "Nilai 1 berarti kurang penting, sedangkan nilai 5 berarti sangat penting."
+            " Disarankan Tidak Mengubah Attribute."
+        )
         col1, col2 = st.columns([4,1])
         with col1:
+            
             price_priority = st.slider(
                 "Harga",
-                1, 5, 3,
-                help="1 = Tidak Penting, 5 = Sangat Penting"
+                1, 5, default["price"],
+                help="Semakin tinggi nilainya, semakin diprioritaskan motor dengan harga yang lebih murah."
             )
 
             cc_priority = st.slider(
                 "CC Mesin",
-                1, 5, 3
+                1, 5, default["CC"],
+                help="CC menunjukkan kapasitas mesin. Semakin tinggi prioritas, sistem lebih memilih motor dengan kapasitas mesin yang lebih besar."
             )
 
             mileage_priority = st.slider(
                 "Irit BBM",
-                1, 5, 3
+                1, 5, default["mileage"],
+                help="Mileage menunjukkan efisiensi bahan bakar (km/liter). Semakin tinggi prioritas, semakin diutamakan motor yang lebih irit."
             )
 
             weight_priority = st.slider(
                 "Berat Motor",
-                1, 5, 3
+                1, 5, default["weight_in_kg"],
+                help="Semakin tinggi prioritas, sistem lebih memilih motor dengan bobot yang lebih ringan sehingga lebih mudah dikendalikan."
             )
 
             acs_priority = st.slider(
-                "Akselerasi",
-                1, 5, 3
+                "Waktu Akselerasi",
+                1, 5, default["acceleration_speed"],
+                help="Waktu Akselerasi. Semakin kecil waktunya, semakin baik performa akselerasinya."
             )
 
             tps_priority = st.slider(
                 "Kecepatan Maksimum",
-                1, 5, 3
+                1, 5, default["top_speed"],
+                help="Semakin tinggi prioritas, semakin diutamakan motor dengan kecepatan maksimum yang lebih tinggi."
             )
 
             prioritas = {
@@ -119,12 +198,12 @@ elif page == "Semua Alternatif":
             # st.write("Total Bobot:", round(total, 2))
 
         with col2:
-            at_price = st.selectbox("Atributte ",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atPrice" )
-            at_cc = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atCC")
-            at_milage = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atMilage")
-            at_weight = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atWeight")
-            at_acs = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atAcs")
-            at_tps = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atTps")
+            at_price = st.selectbox("Attribute ",["Cost", "Benefit"], index=0, key="atPrice", help="Cost = Semakin Kecil Semakin Bagus, Benefit = Semakin Besar Semakin Bagus")
+            at_cc = st.selectbox("",["Cost", "Benefit"], index=1, key="atCC")
+            at_milage = st.selectbox("",["Cost", "Benefit"], index=1, key="atMilage")
+            at_weight = st.selectbox("",["Cost", "Benefit"], index=0, key="atWeight")
+            at_acs = st.selectbox("",["Cost", "Benefit"], index=0, key="atAcs")
+            at_tps = st.selectbox("",["Cost", "Benefit"], index=1, key="atTps")
 
             atribut = {
                 "price": at_price,
@@ -134,128 +213,129 @@ elif page == "Semua Alternatif":
                 "acceleration_speed": at_acs,
                 "top_speed": at_tps
             }
+        
 
     if st.button("Buat Alternatif Terbaik"):
         # if abs(total_prioritas - 1) > 0.001:
         #     st.error("Total bobot harus 1")
-        if None in atribut.values():
-            st.error("Semua Atribut harus dipilih")
-        else:
-            tab3,tab4,tab5,tab6,tab7,tab8 = st.tabs(["Matriks Ternormalisasi","Nilai Preferensi","Tabel Ranking","Alternatif Terbaik","Top 3","Top 10"])
-            with tab3:
-                normalize_matrix=data.copy()
-                # print(normalize_matrix)
-                for col in atribut:# Pakai kolom (m)
-                    if atribut[col].lower() == 'benefit':
-                        normalize_matrix[col]=data[col]/data[col].max()
-                    else:
-                        normalize_matrix[col]=data[col].min()/data[col]
-                st.dataframe(normalize_matrix)
-            with tab4:
-                preference_value={}
-                for index,row in normalize_matrix.iterrows():
-                    total=0
-                    for k in normalize_matrix.columns:
-                        total+=row[k] * bobot[k]
-                    preference_value[index]=total
-                df_preference_value=pd.DataFrame(preference_value.items(),columns=['model_name','preference_value'])
-                df_preference_value=df_preference_value.set_index('model_name')
-                st.dataframe(df_preference_value)
-            with tab5:
-                hasil_ranking=df_preference_value.sort_values(by='preference_value',ascending=False)
-                hasil_ranking_data = hasil_ranking.reset_index()
-                hasil_ranking_data.index = hasil_ranking_data.index + 1
-                hasil_ranking_data.index.name = "Ranking"
-                st.dataframe(hasil_ranking_data)
-            with tab6:
-                best_alt = hasil_ranking.index[0]
-                st.write(best_alt)
-                st.text(f"Motor Terbaik Adalah {best_alt}")
-                
-                df2=pd.read_csv('bike_dataset.csv')
-                df2=df2.set_index('model_name')
-                best_alt_data = df2.loc[best_alt]
-                st.dataframe(best_alt_data)
+        # if None in atribut.values():
+        #     st.error("Semua Atribut harus dipilih")
+        # else:
+        tab3,tab4,tab5,tab6,tab7,tab8 = st.tabs(["Matriks Ternormalisasi","Nilai Preferensi","Tabel Ranking","Alternatif Terbaik","Top 3","Top 10"])
+        with tab3:
+            normalize_matrix=data.copy()
+            # print(normalize_matrix)
+            for col in atribut:# Pakai kolom (m)
+                if atribut[col].lower() == 'benefit':
+                    normalize_matrix[col]=data[col]/data[col].max()
+                else:
+                    normalize_matrix[col]=data[col].min()/data[col]
+            st.dataframe(normalize_matrix)
+        with tab4:
+            preference_value={}
+            for index,row in normalize_matrix.iterrows():
+                total=0
+                for k in normalize_matrix.columns:
+                    total+=row[k] * bobot[k]
+                preference_value[index]=total
+            df_preference_value=pd.DataFrame(preference_value.items(),columns=['model_name','preference_value'])
+            df_preference_value=df_preference_value.set_index('model_name')
+            st.dataframe(df_preference_value)
+        with tab5:
+            hasil_ranking=df_preference_value.sort_values(by='preference_value',ascending=False)
+            hasil_ranking_data = hasil_ranking.reset_index()
+            hasil_ranking_data.index = hasil_ranking_data.index + 1
+            hasil_ranking_data.index.name = "Ranking"
+            st.dataframe(hasil_ranking_data)
+        with tab6:
+            best_alt = hasil_ranking.index[0]
+            st.write(best_alt)
+            st.text(f"Motor Terbaik Adalah {best_alt}")
+            
+            df2=pd.read_csv('bike_dataset.csv')
+            df2=df2.set_index('model_name')
+            best_alt_data = df2.loc[best_alt]
+            st.dataframe(best_alt_data)
 
-                link_motor = best_alt_data['links']
-                st.link_button(
-                    "Lihat Detail Motor",
-                    link_motor
-                )
-            with tab7:
-                labels = [
-                    f"{k} ({atribut[k]})"
-                    for k in bobot.keys()
-                ]
-                fig, ax = plt.subplots()
-                ax.pie(
-                    bobot.values(),
-                    labels=labels,
-                    autopct='%1.1f%%'
-                )
-                ax.set_title("Bobot dan Atribut Kriteria")
-                st.pyplot(fig)
+            link_motor = best_alt_data['links']
+            st.link_button(
+                "Lihat Detail Motor",
+                link_motor
+            )
+        with tab7:
+            labels = [
+                f"{k} ({atribut[k]})"
+                for k in bobot.keys()
+            ]
+            fig, ax = plt.subplots()
+            ax.pie(
+                bobot.values(),
+                labels=labels,
+                autopct='%1.1f%%'
+            )
+            ax.set_title("Bobot dan Atribut Kriteria")
+            st.pyplot(fig)
 
-                #grafik kedua
-                top3 = hasil_ranking.head(3).index
-                compare_data = normalize_matrix.loc[top3]
-                fig, ax = plt.subplots(figsize=(12,6))
-                x = np.arange(len(compare_data.columns))
-                width = 0.25
-                for i, motor in enumerate(compare_data.index):
-                    ax.bar(
-                        x + i*width,
-                        compare_data.loc[motor],
-                        width,
-                        label=motor
-                    )
-                ax.set_xticks(x + width)
-                ax.set_xticklabels(compare_data.columns)
-                ax.set_title("Perbandingan Top 3 Motor")
-                ax.set_ylabel("Nilai Normalisasi")
-                ax.legend()
-                st.pyplot(fig)
-
-                st.subheader("Data Lengkap Top 3")
-                top3_index = hasil_ranking.head(3).index
-                top3_data = df2.loc[top3_index].copy()
-                top3_data['preference_value'] = (
-                    hasil_ranking.head(3)['preference_value']
-                )  
-                top3_data = top3_data.reset_index()
-                top3_data.index = top3_data.index + 1
-                top3_data.index.name = "Ranking"
-                st.dataframe(top3_data)
-
-            with tab8:
-                #grafik ketiga
-                top10 = hasil_ranking.head(10)
-                fig, ax = plt.subplots(figsize=(12,6))
-
+            #grafik kedua
+            top3 = hasil_ranking.head(3).index
+            compare_data = normalize_matrix.loc[top3]
+            fig, ax = plt.subplots(figsize=(12,6))
+            x = np.arange(len(compare_data.columns))
+            width = 0.25
+            for i, motor in enumerate(compare_data.index):
                 ax.bar(
-                    top10.index,
-                    top10['preference_value']
+                    x + i*width,
+                    compare_data.loc[motor],
+                    width,
+                    label=motor
                 )
+            ax.set_xticks(x + width)
+            ax.set_xticklabels(compare_data.columns)
+            ax.set_title("Perbandingan Top 3 Motor")
+            ax.set_ylabel("Nilai Normalisasi")
+            ax.legend()
+            st.pyplot(fig)
 
-                ax.set_title("Top 10 Motor Berdasarkan Nilai SAW")
-                ax.set_ylabel("Nilai Preferensi")
+            st.subheader("Data Lengkap Top 3")
+            top3_index = hasil_ranking.head(3).index
+            top3_data = df2.loc[top3_index].copy()
+            top3_data['preference_value'] = (
+                hasil_ranking.head(3)['preference_value']
+            )  
+            top3_data = top3_data.reset_index()
+            top3_data.index = top3_data.index + 1
+            top3_data.index.name = "Ranking"
+            st.dataframe(top3_data)
 
-                plt.xticks(rotation=20)
+        with tab8:
+            #grafik ketiga
+            top10 = hasil_ranking.head(10)
+            fig, ax = plt.subplots(figsize=(12,6))
 
-                st.pyplot(fig)
+            ax.bar(
+                top10.index,
+                top10['preference_value']
+            )
 
-                st.subheader("Data Lengkap Top 10")
-                top10_index = hasil_ranking.head(10).index
-                top10_data = df2.loc[top10_index].copy()
-                top10_data['preference_value'] = (
-                    hasil_ranking.head(10)['preference_value']
-                )  
-                top10_data = top10_data.reset_index()
-                top10_data.index = top10_data.index + 1
-                top10_data.index.name = "Ranking"
-                st.dataframe(top10_data)
-                csv = top10_data.to_csv(index=False).encode('utf-8')
-                st.download_button(label='Unduh TOP 10', data=csv, file_name='top10_motor_saw.csv', mime="text/csv")
+            ax.set_title("Top 10 Motor Berdasarkan Nilai SAW")
+            ax.set_ylabel("Nilai Preferensi")
+
+            plt.xticks(rotation=20)
+
+            st.pyplot(fig)
+
+            st.subheader("Data Lengkap Top 10")
+            top10_index = hasil_ranking.head(10).index
+            top10_data = df2.loc[top10_index].copy()
+            top10_data['preference_value'] = (
+                hasil_ranking.head(10)['preference_value']
+            )  
+            top10_data = top10_data.reset_index()
+            top10_data.index = top10_data.index + 1
+            top10_data.index.name = "Ranking"
+            st.dataframe(top10_data)
+            csv = top10_data.to_csv(index=False).encode('utf-8')
+            st.download_button(label='Unduh TOP 10', data=csv, file_name='top10_motor_saw.csv', mime="text/csv")
             
 elif page == "Alternatif Pilihan":
     tab1,tab2,tab3=st.tabs([
@@ -281,37 +361,116 @@ elif page == "Alternatif Pilihan":
             st.dataframe(selected_data)
     with tab3:
         st.title("Kriteria SAW")
+
+        st.subheader("Tujuan Pemilihan")
+
+        template = st.selectbox(
+            "Pilih Tujuan",
+            [
+                "Kustom",
+                "Harga Terbaik",
+                "Performa Terbaik",
+                "Irit Harian",
+                "Seimbang"
+            ]
+        )
+
+        if template == "Harga Terbaik":
+            st.info("Memprioritaskan motor dengan harga terjangkau namun tetap mempertimbangkan efisiensi.")
+            default = {
+                "price": 5,
+                "CC": 2,
+                "mileage": 4,
+                "weight_in_kg": 3,
+                "acceleration_speed": 2,
+                "top_speed": 2
+            }
+
+        elif template == "Performa Terbaik":
+            st.info("Memprioritaskan performa mesin, akselerasi, dan kecepatan maksimum.")
+            default = {
+                "price": 2,
+                "CC": 5,
+                "mileage": 2,
+                "weight_in_kg": 4,
+                "acceleration_speed": 5,
+                "top_speed": 5
+            }
+
+        elif template == "Irit Harian":
+            st.info("Cocok untuk penggunaan sehari-hari dengan fokus pada konsumsi BBM.")
+            default = {
+                "price": 4,
+                "CC": 2,
+                "mileage": 5,
+                "weight_in_kg": 3,
+                "acceleration_speed": 2,
+                "top_speed": 2
+            }
+
+        elif template == "Seimbang":
+            st.info("Memberikan bobot yang seimbang pada seluruh kriteria.")
+            default = {
+                "price": 3,
+                "CC": 3,
+                "mileage": 3,
+                "weight_in_kg": 3,
+                "acceleration_speed": 3,
+                "top_speed": 3
+            }
+
+        else:
+            st.info("Atur sendiri tingkat kepentingan setiap kriteria menggunakan slider.")
+            default = {
+                "price": 3,
+                "CC": 3,
+                "mileage": 3,
+                "weight_in_kg": 3,
+                "acceleration_speed": 3,
+                "top_speed": 3
+            }
+        st.info(
+            "Geser slider untuk menentukan tingkat kepentingan setiap kriteria. "
+            "Nilai 1 berarti kurang penting, sedangkan nilai 5 berarti sangat penting."
+            " Disarankan Tidak Mengubah Attribute."
+        )
+
         col1, col2 = st.columns([4,1])
         with col1:
             price_priority = st.slider(
                 "Harga",
-                1, 5, 3,
-                help="1 = Tidak Penting, 5 = Sangat Penting"
+                1, 5, default["price"],
+                help="Semakin tinggi nilainya, semakin diprioritaskan motor dengan harga yang lebih murah."
             )
 
             cc_priority = st.slider(
                 "CC Mesin",
-                1, 5, 3
+                1, 5, default["CC"],
+                help="CC menunjukkan kapasitas mesin. Semakin tinggi prioritas, sistem lebih memilih motor dengan kapasitas mesin yang lebih besar."
             )
 
             mileage_priority = st.slider(
                 "Irit BBM",
-                1, 5, 3
+                1, 5, default["mileage"],
+                help="Mileage menunjukkan efisiensi bahan bakar (km/liter). Semakin tinggi prioritas, semakin diutamakan motor yang lebih irit."
             )
 
             weight_priority = st.slider(
                 "Berat Motor",
-                1, 5, 3
+                1, 5, default["weight_in_kg"],
+                help="Semakin tinggi prioritas, sistem lebih memilih motor dengan bobot yang lebih ringan sehingga lebih mudah dikendalikan."
             )
 
             acs_priority = st.slider(
-                "Akselerasi",
-                1, 5, 3
+                "Waktu Akselerasi",
+                1, 5, default["acceleration_speed"],
+                help="Waktu Akselerasi. Semakin kecil waktunya, semakin baik performa akselerasinya."
             )
 
             tps_priority = st.slider(
                 "Kecepatan Maksimum",
-                1, 5, 3
+                1, 5, default["top_speed"],
+                help="Semakin tinggi prioritas, semakin diutamakan motor dengan kecepatan maksimum yang lebih tinggi."
             )
 
             prioritas = {
@@ -330,15 +489,16 @@ elif page == "Alternatif Pilihan":
                 for k, v in prioritas.items()
             }
 
+
             # st.write("Total Bobot:", round(total, 2))
 
         with col2:
-            at_price = st.selectbox("Atributte ",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atPrice")
-            at_cc = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atCC")
-            at_milage = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atMilage")
-            at_weight = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atWeight")
-            at_acs = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atAcs")
-            at_tps = st.selectbox("",["Cost", "Benefit"], index=None, placeholder="Pilih", key="atTps")
+            at_price = st.selectbox("Attribute ",["Cost", "Benefit"], index=0, key="atPrice", help="Cost = Semakin Kecil Semakin Bagus, Benefit = Semakin Besar Semakin Bagus")
+            at_cc = st.selectbox("",["Cost", "Benefit"], index=1, key="atCC")
+            at_milage = st.selectbox("",["Cost", "Benefit"], index=1, key="atMilage")
+            at_weight = st.selectbox("",["Cost", "Benefit"], index=0, key="atWeight")
+            at_acs = st.selectbox("",["Cost", "Benefit"], index=0, key="atAcs")
+            at_tps = st.selectbox("",["Cost", "Benefit"], index=1, key="atTps")
 
             atribut = {
                 "price": at_price,
