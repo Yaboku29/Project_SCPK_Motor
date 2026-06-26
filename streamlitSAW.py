@@ -157,7 +157,7 @@ elif page == "Semua Alternatif":
             mileage_priority = st.slider(
                 "Irit BBM",
                 1, 5, default["mileage"],
-                help="Mileage menunjukkan efisiensi bahan bakar (km/liter). Semakin tinggi prioritas, semakin diutamakan motor yang lebih irit."
+                help="Irit BBM menunjukkan efisiensi bahan bakar (km/liter). Semakin tinggi prioritas, semakin diutamakan motor yang lebih irit."
             )
 
             weight_priority = st.slider(
@@ -638,7 +638,7 @@ elif page == "CRUD":
                     st.error("Nama motor wajib diisi")
                 elif len(model.strip()) < 3:
                     st.error("Nama motor minimal 3 karakter")
-                elif model in df["model_name"].values:
+                elif model in dfc["model_name"].values:
                     st.error("Motor sudah ada di dataset")
                 elif price < 1000:
                     st.error("Harga tidak masuk akal")
@@ -666,18 +666,19 @@ elif page == "CRUD":
                 elif topsp > 500:
                     st.error("Top Speed tidak masuk akal")
                 else:
-                    dfc.loc[len(dfc)] = {
+                    dfcrud.loc[len(dfcrud)] = {
                         "model_name": model,
                         "price": price,
-                        "CC" : cc,
-                        "mileage" : mileage,
-                        "type_of_bike" : tob,
-                        "weight_in_kg" : weight,
-                        "links" : links,
-                        "acceleration_speed" : accel,
-                        "top_speed" : topsp
+                        "CC": cc,
+                        "mileage": mileage,
+                        "type_of_bike": tob,
+                        "weight_in_kg": weight,
+                        "links": links,
+                        "acceleration_speed": accel,
+                        "top_speed": topsp
                     }
-                    dfc.to_csv(
+
+                    dfcrud.to_csv(
                         "bike_dataset.csv",
                         index=False
                     )
@@ -748,11 +749,14 @@ elif page == "CRUD":
             )
 
             if st.form_submit_button("Edit"):
-                if model.strip() == "":
+                if model_name.strip() == "":
                     st.error("Nama motor wajib diisi")
-                elif len(model.strip()) < 3:
+                elif len(model_name.strip()) < 3:
                     st.error("Nama motor minimal 3 karakter")
-                elif model in df["model_name"].values:
+                elif (
+                    model_name != motor_pilih
+                    and model_name in dfc["model_name"].values
+                ):
                     st.error("Motor sudah ada di dataset")
                 elif price < 1000:
                     st.error("Harga tidak masuk akal")
@@ -781,18 +785,18 @@ elif page == "CRUD":
                     st.error("Top Speed tidak masuk akal")
                 else:
 
-                    idx = dfc[dfc["model_name"] == motor_pilih].index[0]
+                    idx = dfcrud[dfcrud["model_name"] == motor_pilih].index[0]
 
-                    dfc.loc[idx, "model_name"] = model_name
-                    dfc.loc[idx, "price"] = price
-                    dfc.loc[idx, "CC"] = cc
-                    dfc.loc[idx, "mileage"] = mileage
-                    dfc.loc[idx, "weight_in_kg"] = weight
-                    dfc.loc[idx, "links"] = links
-                    dfc.loc[idx, "acceleration_speed"] = accel
-                    dfc.loc[idx, "top_speed"] = topsp
+                    dfcrud.loc[idx, "model_name"] = model_name
+                    dfcrud.loc[idx, "price"] = price
+                    dfcrud.loc[idx, "CC"] = cc
+                    dfcrud.loc[idx, "mileage"] = mileage
+                    dfcrud.loc[idx, "weight_in_kg"] = weight
+                    dfcrud.loc[idx, "links"] = links
+                    dfcrud.loc[idx, "acceleration_speed"] = accel
+                    dfcrud.loc[idx, "top_speed"] = topsp
 
-                    dfc.to_csv(
+                    dfcrud.to_csv(
                         "bike_dataset.csv",
                         index=False
                     )
@@ -812,11 +816,11 @@ elif page == "CRUD":
 
         if st.button("Hapus Motor"):
 
-            dfc = dfc[
-                dfc["model_name"] != motor_hapus
+            dfcrud = dfcrud[
+                dfcrud["model_name"] != motor_hapus
             ]
 
-            dfc.to_csv(
+            dfcrud.to_csv(
                 "bike_dataset.csv",
                 index=False
             )
